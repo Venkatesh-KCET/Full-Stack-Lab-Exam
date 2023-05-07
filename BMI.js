@@ -27,9 +27,9 @@ app.post('/calculate', (req, res) => {
   const weight = parseFloat(req.body.weight);
   const height = parseFloat(req.body.height);
 
-  const bmi = weight / Math.pow(height, 2);
+  const bmi = weight / (height*height);
 
-  res.send(`Your BMI is ${bmi.toFixed(2)}`);
+  res.send(`Your BMI is `+bmi);
 });
 
 app.listen(3000);
