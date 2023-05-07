@@ -10,14 +10,11 @@ app.use(bodyParser.json());
 app.get('/', (req, res) => {
   res.send(`
     <form action="/submit" method="POST">
-      <label for="name">Name:</label>
-      <input name="name" required>
+      Name: <input name="name" required>
       <br>
-      <label for="email">Email:</label>
-      <input type="email" name="email" required>
+      Email: <input type="email" name="email" required>
       <br>
-      <label for="message">Message:</label>
-      <textarea name="message" required></textarea>
+      Message: <textarea name="message" required></textarea>
       <br>
       <button type="submit">Submit</button>
     </form>
