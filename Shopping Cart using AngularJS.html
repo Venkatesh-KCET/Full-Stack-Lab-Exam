@@ -1,0 +1,66 @@
+<html>
+<head>
+	<title>Shopping Cart App</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+</head>
+<body ng-app="shoppingCartApp" ng-controller="shoppingCartController">
+	<h1>Shopping Cart App</h1>
+	<div ng-repeat="item in items">
+		<h3>{{ item.name }}</h3>
+		<p>Price: ${{ item.price }}</p>
+		<p>Quantity: {{ item.quantity }}</p>
+		<button ng-click="addToCart($index)">Add to Cart</button>
+	</div>
+
+	<h2>Shopping Cart</h2>
+	<div ng-repeat="item in cart">
+		<h3>{{ item.name }}</h3>
+		<p>Price: ${{ item.price }}</p>
+		<p>Quantity: {{ item.quantity }}</p>
+	</div>
+
+	<button ng-click="checkout()">Checkout</button>
+
+    <script>
+        var app = angular.module("shoppingCartApp", []);
+        app.controller("shoppingCartController", function($scope) {
+            $scope.items = [
+                {
+                    name: "Item 1",
+                    price: 10,
+                    quantity: 1
+                },
+                {
+                    name: "Item 2",
+                    price: 20,
+                    quantity: 1
+                },
+                {
+                    name: "Item 3",
+                    price: 30,
+                    quantity: 1
+                }
+            ];
+            $scope.cart = [];
+            $scope.addToCart = function(item) {
+                var index = $scope.cart.findIndex(function(i) {
+                    return i.name === item.name;
+                });
+                if (index === -1) {
+                    $scope.cart.push({
+                        name: item.name,
+                        price: item.price,
+                        quantity: 1
+                    });
+                } else {
+                    $scope.cart[index].quantity++;
+                }
+            };
+            $scope.checkout = function() {
+                alert("Checkout complete!");
+                $scope.cart = [];
+            };
+        });
+    </script>
+</body>
+</html>
