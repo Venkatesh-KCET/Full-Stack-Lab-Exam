@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<title>Stopwatch</title>
+</head>
+
+<body>
+	<div class="container">
+		<div id="time">
+			<span class="digit" id="hr">0</span>
+			<span class="txt">Hr</span>
+
+			<span class="digit" id="min">0</span>
+			<span class="txt">Min</span>
+
+			<span class="digit" id="sec">0</span>
+			<span class="txt">Sec</span>
+
+            <span class="digit" id="count">0</span>
+		</div>
+		<div id="buttons">
+			<button class="btn" id="start">Start</button>
+			<button class="btn" id="stop">Stop</button>
+			<button class="btn" id="reset">Reset</button>
+		</div>
+	</div>
+
+	<script>
+        let startBtn = document.getElementById('start');
+        let stopBtn = document.getElementById('stop');
+        let resetBtn = document.getElementById('reset');
+
+        let hour = minute = second = count = 0;
+
+        startBtn.addEventListener('click', function () {
+            timer = true;
+            stopWatch();
+        });
+
+        stopBtn.addEventListener('click', function () {
+            timer = false;
+        });
+
+        resetBtn.addEventListener('click', function () {
+            timer = false;
+            hour = minute = second = count = 0;
+            document.getElementById('hr').innerHTML = "0";
+            document.getElementById('min').innerHTML = "0";
+            document.getElementById('sec').innerHTML = "0";
+            document.getElementById('count').innerHTML = "0";
+        });
+
+        function stopWatch() {
+            if (timer) {
+                count++;
+
+                if (count == 100) {
+                    second++;
+                    count = 0;
+                }
+
+                if (second == 60) {
+                    minute++;
+                    second = 0;
+                }
+
+                if (minute == 60) {
+                    hour++;
+                    minute = 0;
+                    second = 0;
+                }
+
+                let hrString = hour;
+                let minString = minute;
+                let secString = second;
+                let countString = count;
+
+                document.getElementById('hr').innerHTML = hrString;
+                document.getElementById('min').innerHTML = minString;
+                document.getElementById('sec').innerHTML = secString;
+                document.getElementById('count').innerHTML = countString;
+                setTimeout(stopWatch, 10);
+            }
+        }
+
+	</script>
+</body>
+</html>
