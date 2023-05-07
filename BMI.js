@@ -29,7 +29,7 @@ app.post('/calculate', (req, res) => {
 
   const bmi = weight / (height*height);
 
-  res.send(`Your BMI is `+bmi);
+  res.send("Your BMI is " + bmi);
 });
 
 app.listen(3000);
