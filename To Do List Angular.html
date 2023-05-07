@@ -1,0 +1,36 @@
+<html>
+<head>
+    <title>Todo List App</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+</head>
+
+<body ng-app="myApp" ng-controller="todoCtrl">
+
+    <form ng-submit="addTodo()">
+        Add new todo:<input ng-model="newTodo">
+        <button type="submit">Add</button>
+    </form>
+
+    <ul>
+        <li ng-repeat="todo in todos">{{ todo }}<button ng-click="removeTodo($index)">Remove</button></li>
+    </ul>
+
+    <script>
+        var app = angular.module('myApp', []);
+        app.controller('todoCtrl', function($scope) {
+            $scope.todos = [];
+
+            $scope.addTodo = function() {
+                if ($scope.newTodo !== "") {
+                    $scope.todos.push($scope.newTodo);
+                    $scope.newTodo = "";
+                }
+            };
+
+            $scope.removeTodo = function(index) {
+                $scope.todos.splice(index, 1);
+            };
+        });
+    </script>
+</body>
+</html>
