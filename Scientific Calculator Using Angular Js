@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.8.3/angular.min.js"></script>
+
+    <title>Scientific Calculator</title>
+
+</head>
+
+<body>
+
+    <div ng-app="myApp" ng-controller="myCtrl">
+
+        <input type="text" ng-model="inp" autofocus><br>
+
+        <button ng-click="sqrt()">sqrt</button>
+
+        <button ng-click="log()">log</button>
+
+        <button ng-click="sin()">sin</button>
+
+        <button ng-click="cos()">cos</button><br>
+
+        <button ng-click="calc()">Calculate</button>
+
+        <button ng-click="reset()">Reset</button>
+
+    </div>
+
+    <script>
+
+        var app = angular.module("myApp", []);
+
+        app.controller("myCtrl", function($scope) {
+
+            $scope.sqrt = function() {
+
+                $scope.inp = Math.sqrt($scope.inp)
+
+            }
+
+            $scope.log = function() {
+
+                $scope.inp = Math.log($scope.inp)
+
+            }
+
+            $scope.sin = function() {
+
+                $scope.inp = Math.sin($scope.inp)
+
+            }
+
+            $scope.cos = function() {
+
+                $scope.inp = Math.cos($scope.inp)
+
+            }
+
+            $scope.calc = function() {
+
+                $scope.inp = eval($scope.inp)
+
+            }
+
+            $scope.reset = function() {
+
+                $scope.inp = ""
+
+            }
+
+        });
+
+    </script>
+
+</body>
+
+</html>
